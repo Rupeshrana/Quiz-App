@@ -3,29 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern To Do List</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <div class="todo-app">
-            <h1>To Do List <i class="fas fa-check-circle"></i></h1>
-            <div class="input-section">
-                <input type="text" id="taskInput" placeholder="Add your task...">
-                <button id="addButton">Add</button>
+        <!-- Theme Toggle -->
+        <div class="header">
+            <h2>Quiz App</h2>
+        </div>
+
+        <!-- Start Screen -->
+        <div id="startScreen" class="start-container">
+            <h1 class="start-title">Quiz Challenge</h1>
+            <p class="start-description">Test your knowledge with our interactive quiz! You'll have 15 seconds per question.</p>
+            <button class="btn btn-primary" onclick="startQuiz()">Start Quiz</button>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quizScreen" style="display: none;">
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text">
+                    Question <span id="currentQuestion">1</span> of <span id="totalQuestions">10</span>
+                </div>
             </div>
-            <ul id="taskList">
-                <!-- Tasks will be added here dynamically -->
-            </ul>
-            <div class="filters">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="active">Active</button>
-                <button class="filter-btn" data-filter="completed">Completed</button>
-                <button id="clearCompleted">Clear Completed</button>
+
+            <!-- Timer -->
+            <div class="timer" id="timer">15</div>
+
+            <!-- Question -->
+            <div class="question-container">
+                <div class="question" id="question"></div>
+                <div class="options-container" id="options"></div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="button-container">
+                <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>Next</button>
+                <button class="btn btn-danger" id="endQuizBtn" onclick="endQuizEarly()">End Quiz</button>
+            </div>
+        </div>
+
+        <!-- Result Screen -->
+        <div id="resultScreen" class="result-container">
+            <h2>Quiz Complete!</h2>
+            <div class="score-display" id="finalScore"></div>
+            <div class="high-score" id="highScore"></div>
+            <div class="button-container">
+                <button class="btn btn-primary" onclick="restartQuiz()">Play Again</button>
+                <button class="btn btn-secondary" onclick="showStartScreen()">Back to Start</button>
             </div>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
-</html> 
+</html>
